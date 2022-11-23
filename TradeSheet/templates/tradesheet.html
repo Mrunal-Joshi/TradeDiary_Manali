@@ -1,1 +1,75 @@
 {% extends 'base.html' %}
+{% load mathfilters %}
+
+
+{% block title %}
+<title>TradeSheet</title> 
+{% endblock title %}
+
+{% block body %}
+<br><br>
+<form>
+  <div class="form-row">
+    <div class="col">
+      <input type="date" class="form-control" placeholder="Date">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Symbol">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Buy Price">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="No. Of Shares">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Sell Price">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add Trade</button>
+  </div>
+</form>
+
+<br><br>
+
+
+<!-- TradeSheet Table-->
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">date</th>
+        <th scope="col">Symbol</th>
+        <th scope="col">buy_price</th>
+        <th scope="col">no_of_shares</th>
+        <th scope="col">sell_price</th>
+        <th scope="col">profit_loss</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody class="table-light">
+        {% for i in sheet %}
+        
+            {% comment %} {% with profit_loss={{6|add:"2"}} %}
+            {% endwith %} {% endcomment %}
+            <tr>
+            <td>{{mult}}</td>
+            <td>{{i.date}}</td>
+            <td>{{i.symbol}}</td>
+            <td>{{i.buy_price}}</td>
+            <td>{{i.no_of_shares}}</td>
+            <td>{{i.sell_price}}</td>
+            <td>{{i.sell_price|sub:i.buy_price}}</td>
+            <td>Edit</td>
+            <td>Delete</td>
+            </tr>
+            
+        {% endfor %}
+      
+    </tbody>
+  </table>
+
+    
+                
+{% endblock body %}
