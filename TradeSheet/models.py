@@ -1,12 +1,12 @@
 from django.db import models
-
+from datetime import datetime
 # Create your models here.
 
 class TradeSheet(models.Model):   
 
-    date = models.DateField(auto_now=False, auto_now_add=False)
+    date = models.DateField(auto_now=False, auto_now_add=False,blank=True,default=datetime.now)
     symbol = models.CharField(max_length=8)
-    no_of_shares = models.IntegerField()
+    no_of_shares = models.IntegerField(default=0)
     buy_price = models.FloatField(default=0)
     sell_price = models.FloatField(default=0)
     profit_loss = models.FloatField(default=0)
