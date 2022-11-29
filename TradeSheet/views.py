@@ -26,9 +26,23 @@ def displaysheet(request):
 
 
 def editTrade(request,id):
-    #if request.method == "POST":
-    TradeSheet.objects.filter(id=id).delete()      
-    return redirect('tradesheet')
+    if request.method == "POST":
+        sheet = TradeSheet.objects.get(id=id)
+        form = TradeSheetForm(request.POST or None,instance=sheet)
+        
+        if form.is_valid():  
+            print(id)         
+            form.save()
+            print(id) 
+            messages.success(request, ("Trade Edited!"))
+        else:
+            for field in form:
+                print("Field Error:", field.name,  field.errors)
+
+        return redirect('tradesheet')
+    else:
+        sheet = TradeSheet.objects.get(id=id)
+        return render(request,'edit.html',{'trade':sheet})
 
 def deleteTrade(request,id):
     TradeSheet.objects.filter(id=id).delete()
