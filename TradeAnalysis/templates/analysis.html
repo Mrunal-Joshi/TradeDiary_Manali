@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+
+
+{% block title %}
+<title>TradeAnalysis</title> 
+{% endblock title %}
+
+{% block body %}
+<br><br>
+
+  {{pie_chart | safe}}  
+  
+  <br><br>
+
+  {{line_chart | safe}}
+{% endblock body %}

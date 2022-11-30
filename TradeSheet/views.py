@@ -6,8 +6,7 @@ from django.contrib import messages
 
 
 def displaysheet(request):
-    # <QuerySet [{'id': 1, 'date': datetime.date(2022, 11, 16), 
-    # 'symbol': 'FISV', 'no_of_shares': 12, 'buy_price': 110.0, 'sell_price': 11.0, 'profit_loss': 0.0}
+    
     if request.method == "POST":
         form = TradeSheetForm(request.POST or None)
         
@@ -30,10 +29,8 @@ def editTrade(request,id):
         sheet = TradeSheet.objects.get(id=id)
         form = TradeSheetForm(request.POST or None,instance=sheet)
         
-        if form.is_valid():  
-            print(id)         
+        if form.is_valid():                    
             form.save()
-            print(id) 
             messages.success(request, ("Trade Edited!"))
         else:
             for field in form:

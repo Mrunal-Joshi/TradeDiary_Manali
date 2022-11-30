@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mathfilters',
     'TradeSheet',
+    'TradeAnalysis',
     
 ]
 
@@ -126,5 +127,6 @@ STATICFILES_DIRS = [(os.path.join(BASE_DIR,'static')),]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DATE_INPUT_FORMATS = ('%d/%m/%Y')
+#USE_L10N = True
+#DATE_INPUT_FORMATS = ('YYYY-MM-DD')
  
