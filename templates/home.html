@@ -3,9 +3,54 @@
 {% block title %}
 <title>TradeDiary-home</title> 
 {% endblock title %}
-
+{% load static %}
+   
 
 {% block body %}
-     {% load static %}
-     <img src="{% static 'HomeImage.webp' %}" style="width:100%;height:500px;>
+<link rel="stylesheet" href="{% static 'TradeStyle.css' %}"> 
+     <body >   
+     <div class="home one">
+     <p id = "pot" >Your Online</br>
+    Trading Journal
+     </p>    
+     </div>
+     <div class="home two">
+          <img id="tdimg" src="{% static 'TradingImage.jpg' %}" alt = "Trading Image" style="width:80%;height:400px;">
+     </div>
+     <div >
+          
+          <div class = "home1 right">
+          <table class="table">
+               <thead >
+                 <tr>
+                   <th colspan= "2" style ="text-align: center">Profit and Loss Analysis</th>
+                 </tr>
+               </thead>
+               <tbody>
+                     <tr>
+                       <td>Total Profit</td>
+                       <td class="right">3.45</td>
+                    </tr>
+                    <tr>
+                         <td>Total Loss</td>
+                         <td class="right">23.12</td>
+                    </tr>
+                    <tr>
+                         <td>Net Profit/Loss</td>
+                         <td class="right">23.12</td>
+                    </tr>      
+               </tbody>
+          </table>
+     </div>
+     <div class = "home1 left">
+          <p>The TradeDiary trading journal offers a wide variety of journaling features.
+               Use TradeDiary to work on your trading performance and also improve your trading mindset.
+          </p>
+          </div>
+     </div>
+     </body>   
+     <!-- TradeSheet Table-->
+
+ 
+     
 {% endblock body %}

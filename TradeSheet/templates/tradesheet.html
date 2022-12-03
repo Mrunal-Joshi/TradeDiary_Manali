@@ -22,7 +22,13 @@
       </div>
       {% endfor %}
   {% endif %} 
-  
+  <style>
+    .navbar-center {
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
+    }
+</style>
   <div class="form-row">
     <div class="col">
       <input type="date" class="form-control" placeholder="Date" name="date">
@@ -48,16 +54,16 @@
 
 
 <!-- TradeSheet Table-->
-<table class="table table-hover table-striped">
+<table class="table table-hover table-striped navbar-center" style = "width: 95%;">
     <thead class="table-dark">
       <tr>
-        <th scope="col">id</th>
-        <th scope="col">date</th>
+        <th scope="col">Id</th>
+        <th scope="col">Date</th>
         <th scope="col">Symbol</th>
-        <th scope="col">buy_price</th>
-        <th scope="col">no_of_shares</th>
-        <th scope="col">sell_price</th>
-        <th scope="col">profit_loss</th>
+        <th scope="col">Buy Price</th>
+        <th scope="col">No. of shares</th>
+        <th scope="col">Sell Price</th>
+        <th scope="col">Profit/Loss</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>

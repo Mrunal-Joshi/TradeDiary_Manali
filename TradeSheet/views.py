@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import TradeSheet
 from .forms import TradeSheetForm
 from django.contrib import messages
-
+from .filters import TradeSheetFilter
 
 def displaysheet(request):
     # <QuerySet [{'id': 1, 'date': datetime.date(2022, 11, 16), 
