@@ -8,10 +8,56 @@
 
 {% block body %}
 <br><br>
+
+{% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<div class="modal fade" id="#myModal" tabindex="-1" role="dialog" aria-labelledby="editMODALTitle" aria-hidden="true" >               
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editMODALTitle">Edit Trade Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"> 
+       <h1>heyyy</h1>
+       <form method="POST" action=""> 
+          {% csrf_token %}                                                      
+          <div class="col">
+            <input type="date" class="form-control" placeholder="Date" name="date">
+           
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Symbol" name="symbol">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buy Price" name="buy_price">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="No. Of Shares" name="no_of_shares">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Sell Price" name="sell_price">
+          </div>        
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>   
+          <button type="submit" class="btn btn-secondary" >Save Changes</button>                    
+          </form> 
+      
+      </div>
+      
+    </div>
+  </div>
+</div> 
+ {% endcomment %}
+
+  
 <form method="POST" action="">
   {% csrf_token %}
 
-  
+ 
   {% if messages %}
       {% for message in messages %}
       <div class="alert alert-success col-lg-4" role="alert">
@@ -22,6 +68,7 @@
       </div>
       {% endfor %}
   {% endif %} 
+<<<<<<< HEAD
   <style>
     .navbar-center {
         position: absolute;
@@ -29,9 +76,13 @@
         transform: translatex(-50%);
     }
 </style>
+=======
+ 
+>>>>>>> f932a83b45f059f6f9f7a994269bfd29aa5740dc
   <div class="form-row">
     <div class="col">
       <input type="date" class="form-control" placeholder="Date" name="date">
+     
     </div>
     <div class="col">
       <input type="text" class="form-control" placeholder="Symbol" name="symbol">
@@ -48,17 +99,27 @@
     
     <button type="submit" class="btn btn-primary">Add Trade</button>
   </div>
-</form>
+  
+</form> 
 
 <br><br>
 
 
+<<<<<<< HEAD
 <!-- TradeSheet Table-->
 <table class="table table-hover table-striped navbar-center" style = "width: 95%;">
     <thead class="table-dark">
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Date</th>
+=======
+{% comment %}  DISPLAY TRADE SHEET {% endcomment %}
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+      <tr>
+        {% comment %} <th scope="col">id</th> {% endcomment %}
+        <th scope="col">date</th>
+>>>>>>> f932a83b45f059f6f9f7a994269bfd29aa5740dc
         <th scope="col">Symbol</th>
         <th scope="col">Buy Price</th>
         <th scope="col">No. of shares</th>
@@ -68,82 +129,27 @@
         <th scope="col">Delete</th>
       </tr>
     </thead>
+
     <tbody class="table-light">
         {% for i in sheet %}
-        
-            {% comment %} {% with profit_loss={{6|add:"2"}} %}
-            {% endwith %} {% endcomment %}
+          
             <tr>
-            <td>{{i.id}}</td>
+            {% comment %} <td>{{i.id}}</td> {% endcomment %}
             <td>{{i.date}}</td>
             <td>{{i.symbol}}</td>
             <td>{{i.buy_price}}</td>
             <td>{{i.no_of_shares}}</td>
             <td>{{i.sell_price}}</td>
-            <td>{{i.sell_price|sub:i.buy_price}}</td>
-            <td><a class="btn btn-info" role="button" aria-pressed="true" data-toggle="modal" data-target="#editMODAL">Edit</a></td>
-            {% comment %} <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editMODAL">
-              Launch demo modal
-            </button></td> {% endcomment %}
+            <td>{{i.profit_loss}}</td>
+            <td><a href="{% url 'editTrade' i.id %}" class="btn btn-info" role="button" aria-pressed="true" >Edit</a></td>
             <td><a href="{% url 'deleteTrade' i.id %}" class="btn btn-info" role="button" aria-pressed="true">Delete</a></td>
             </tr>
-            
-            <!-- Modal -->
-            <form method="POST" action="">
-              {% csrf_token %}
-
-              <div class="modal fade" id="editMODAL" tabindex="-1" role="dialog" aria-labelledby="editMODALTitle" aria-hidden="true" >
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="editMODALTitle">Edit Trade Details</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">                    
-                        <div class="col">
-                          <input type="date" class="form-control" placeholder="Date" name="date" value="{{i.date}}">
-                        </div><br>
-                        <div class="col">
-                          <input type="text" class="form-control" placeholder="Symbol" name="symbol" value="{{i.symbol}}">
-                        </div><br>
-                        <div class="col">
-                          <input type="text" class="form-control" placeholder="Buy Price" name="buy_price" value="{{i.buy_price}}">
-                        </div><br>
-                        <div class="col">
-                          <input type="text" class="form-control" placeholder="No. Of Shares" name="no_of_shares" value="{{i.no_of_shares}}">
-                        </div><br>
-                        <div class="col">
-                          <input type="text" class="form-control" placeholder="Sell Price" name="sell_price" value="{{i.sell_price}}">
-                        </div><br>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                     
-                          <a href="{% url 'editTrade' i.id %}" class="btn btn-info" role="button" aria-pressed="true">Save Changes</a>
-                          {% comment %} <a href="{% url 'deleteTrade' i.id %}" class="btn btn-info" role="button" aria-pressed="true">edit</a> {% endcomment %}
-                        </div>
-                 
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </form>
+                      
         {% endfor %}
-
-
-        {% comment %} EDIT FORM {% endcomment %}
-
-        <!-- Button trigger modal -->
-{% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-  Launch demo modal
-</button> {% endcomment %}
-
-
-      
+ 
     </tbody>
   </table>
+  
 
-    
-                
+                 
 {% endblock body %}

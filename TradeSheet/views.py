@@ -6,8 +6,7 @@ from django.contrib import messages
 from .filters import TradeSheetFilter
 
 def displaysheet(request):
-    # <QuerySet [{'id': 1, 'date': datetime.date(2022, 11, 16), 
-    # 'symbol': 'FISV', 'no_of_shares': 12, 'buy_price': 110.0, 'sell_price': 11.0, 'profit_loss': 0.0}
+    
     if request.method == "POST":
         form = TradeSheetForm(request.POST or None)
         
@@ -26,9 +25,21 @@ def displaysheet(request):
 
 
 def editTrade(request,id):
-    #if request.method == "POST":
-    TradeSheet.objects.filter(id=id).delete()      
-    return redirect('tradesheet')
+    if request.method == "POST":
+        sheet = TradeSheet.objects.get(id=id)
+        form = TradeSheetForm(request.POST or None,instance=sheet)
+        
+        if form.is_valid():                    
+            form.save()
+            messages.success(request, ("Trade Edited!"))
+        else:
+            for field in form:
+                print("Field Error:", field.name,  field.errors)
+
+        return redirect('tradesheet')
+    else:
+        sheet = TradeSheet.objects.get(id=id)
+        return render(request,'edit.html',{'trade':sheet})
 
 def deleteTrade(request,id):
     TradeSheet.objects.filter(id=id).delete()

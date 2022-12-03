@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+
+
+{% block title %}
+<title>TradeSheet</title> 
+{% endblock title %}
+
+{% block body %}
+<br><br>
+<form method="POST" action="">
+  {% csrf_token %}
+
+  
+  {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success col-lg-4" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      {% endfor %}
+  {% endif %} 
+  {% comment %} ADD TRADE {% endcomment %}
+  <div class="form-row">
+    <div class="col">
+      <input type="date" class="form-control" placeholder="Date" name="date">
+     
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Symbol" name="symbol">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Buy Price" name="buy_price">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="No. Of Shares" name="no_of_shares">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Sell Price" name="sell_price">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add Trade</button>
+  </div>
+</form>
+
+<br><br>
+
+
+{% comment %}  TRADE SHEET {% endcomment %}
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+      <tr>
+        {% comment %} <th scope="col">id</th> {% endcomment %}
+        <th scope="col">date</th>
+        <th scope="col">Symbol</th>
+        <th scope="col">buy_price</th>
+        <th scope="col">no_of_shares</th>
+        <th scope="col">sell_price</th>
+        <th scope="col">profit_loss</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody class="table-light">
+        {% for i in sheet %}
+          
+            <tr>
+            {% comment %} <td>{{i.id}}</td> {% endcomment %}
+            <td>{{i.date}}</td>
+            <td>{{i.symbol}}</td>
+            <td>{{i.buy_price}}</td>
+            <td>{{i.no_of_shares}}</td>
+            <td>{{i.sell_price}}</td>
+            <td>{{i.profit_loss}}</td>
+            <td><a href="{% url 'editTrade' i.id %}" class="btn btn-info" role="button" aria-pressed="true" >Edit</a></td>
+            <td><a href="{% url 'deleteTrade' i.id %}" class="btn btn-info" role="button" aria-pressed="true">Delete</a></td>
+            </tr>
+                      
+        {% endfor %}
+ 
+    </tbody>
+  </table>
+  
+
+                 
+{% endblock body %}
