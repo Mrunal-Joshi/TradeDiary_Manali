@@ -3,10 +3,57 @@
 {% block title %}
 <title>TradeDiary-home</title> 
 {% endblock title %}
-
+{% load static %}
+   
 
 {% block body %}
-     {% load static %}
-     <img src="{% static 'HomeImage.webp' %}" style="width:100%;height:500px;">
 
+{% comment %} {% include 'index.html' %} {% endcomment %}
+<link rel="stylesheet" href="{% static 'TradeStyle.css' %}"> 
+     <body >   
+     <div class="home one">
+     <p id = "pot" >Your Online</br>
+    Trading Journal
+     </p>    
+     </div>
+     <div class="home two">
+          <img id="tdimg" src="{% static 'TradingImage.jpg' %}" alt = "Trading Image" style="width:80%;height:400px;">
+     </div>
+     <div >
+          
+          <div class = "home1 right">
+          <table class="table">
+               <thead >
+                 <tr>
+                   <th colspan= "2" style ="text-align: center">Analysis</th>
+                 </tr>
+               </thead>
+               <tbody>
+                     <tr>
+                       <td>Total Investment</td>
+                       <td class="right">{{buy_price__sum}}</td>
+                    </tr>
+                    
+                    <tr>
+                         <td>Net Profit & Loss</td>
+                         <td class="right">{{profit_loss__sum}}</td>
+                    </tr>   
+                    <tr>
+                         <td>Win Rate</td>
+                         <td class="right">{{win_rate}}%</td>
+                    </tr>   
+               </tbody>
+          </table>
+     </div>
+     <div class = "home1 left">
+          <p>The TradeDiary trading journal offers a wide variety of journaling features.
+               Use TradeDiary to work on your trading performance and also improve your trading mindset.
+          </p>
+          </div>
+     </div>
+     </body>    
+     <!-- TradeSheet Table-->
+
+ 
+     
 {% endblock body %}

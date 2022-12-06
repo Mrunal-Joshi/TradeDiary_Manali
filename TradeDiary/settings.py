@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'TradeSheet',
     'TradeAnalysis',
+    'django_filters',
     
 ]
 
