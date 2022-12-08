@@ -27,8 +27,10 @@ def tradeAnalysis(request):
     test['date']=pd.to_datetime(test['date'])
     todays_pnl = test.loc[test['date']==today]
 
-    
-    Analysis_data['todays_pnl']=todays_pnl.iloc[0]['profit_loss']
+    if todays_pnl.empty:
+        Analysis_data['todays_pnl']=0
+    else:
+        Analysis_data['todays_pnl']=todays_pnl#todays_pnl.iloc[0]['profit_loss']
 
     return render(request,'analysis.html',Analysis_data)
 
